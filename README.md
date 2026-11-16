@@ -1,8 +1,9 @@
-# Fornea — Pizzeria Napoletana
+# Fornea — Neapolitan Pizzeria
 
 A single-page site for a fictional wood-fired pizzeria in Rome, in the visual
 language of a real neighbourhood trattoria: editorial serif type, paper and
-terracotta palette, a printed-menu layout and a receipt-styled order pad.
+terracotta palette, a printed-menu layout, a receipt-styled order pad, and a
+light/dark theme toggle.
 
 No build step, no dependencies. Everything is plain HTML, CSS and JavaScript.
 
@@ -14,15 +15,22 @@ Open `index.html` directly, or serve the folder:
 python -m http.server 8000
 ```
 
+## Theming
+
+The toggle in the header switches between light and dark. The choice is stored
+in `localStorage`; on first visit the site follows `prefers-color-scheme`. An
+inline script in `<head>` applies the theme before first paint, so there is no
+flash of the wrong theme.
+
 ## Sections
 
 - **Hero** — headline, two house shots, a "Verace Pizza Napoletana" stamp, and a
   scrolling strip of the house credentials.
-- **La Carta** — the twelve dishes, each with its own photograph.
-- **Il Forno** — the oven and the 48-hour dough, on a dark panel.
-- **Ordina** — a working order pad styled as an Italian *scontrino*: quantities,
+- **The Menu** — the twelve dishes, each with its own photograph.
+- **The Oven** — the oven and the 48-hour dough, on a dark panel.
+- **Order** — a working order pad styled as an Italian *scontrino*: quantities,
   running total, pickup reservation.
-- **La Sede** — address and opening hours.
+- **Find Us** — address and opening hours.
 
 ## Photos
 
@@ -38,7 +46,7 @@ https://dodoloiu1.github.io/pizzeria/
 
 ## Files
 
-- `index.html` — page markup
-- `styles.css` — design tokens, layout, responsive rules
-- `script.js` — menu data, order pad, scroll reveals
+- `index.html` — page markup + pre-paint theme script
+- `styles.css` — design tokens (light/dark), layout, responsive rules
+- `script.js` — menu data, order pad, theme toggle, scroll reveals
 - `images/*.jpg` — generated dish photography

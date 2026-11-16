@@ -1,43 +1,43 @@
 const MENU = [
   { id: "margherita", name: "Margherita", price: 9.5,
-    desc: "Pomodoro San Marzano DOP, fior di latte di Agerola, basilico fresco, olio extravergine.",
-    tags: [["classica", ""], ["vegetariana", "tag-veg"]] },
+    desc: "San Marzano DOP tomato, fior di latte from Agerola, fresh basil, extra-virgin olive oil.",
+    tags: [["classic", ""], ["vegetarian", "tag-veg"]] },
   { id: "marinara", name: "Marinara", price: 8.5,
-    desc: "Pomodoro San Marzano, aglio, origano, olio extravergine. Senza formaggio: la prova del forno.",
-    tags: [["classica", ""], ["vegana", "tag-veg"]] },
+    desc: "San Marzano tomato, garlic, oregano, extra-virgin olive oil. No cheese — the oven's test.",
+    tags: [["classic", ""], ["vegan", "tag-veg"]] },
   { id: "diavola", name: "Diavola", price: 12.5,
-    desc: "Salame piccante, mozzarella, pomodoro, un filo di miele al peperoncino.",
-    tags: [["piccante", "tag-hot"]] },
+    desc: "Spicy salami, mozzarella, tomato, a ribbon of chilli honey.",
+    tags: [["spicy", "tag-hot"]] },
   { id: "quattro", name: "Quattro Formaggi", price: 13.0,
-    desc: "Mozzarella, gorgonzola, taleggio, parmigiano, un filo di miele. Pizza bianca.",
-    tags: [["vegetariana", "tag-veg"]] },
+    desc: "Mozzarella, gorgonzola, talegio, parmesan, a ribbon of honey. A white pizza.",
+    tags: [["vegetarian", "tag-veg"]] },
   { id: "prosciutto", name: "Prosciutto e Rucola", price: 14.5,
-    desc: "Cotta bianca, poi prosciutto crudo 18 mesi, rucola fresca e scaglie di parmigiano.",
-    tags: [["piace molto", ""]] },
+    desc: "Baked plain, then 18-month prosciutto crudo, fresh rocket and shaved parmesan.",
+    tags: [["popular", ""]] },
   { id: "funghi", name: "Funghi", price: 11.5,
-    desc: "Funghetti castagna arrostiti, mozzarella, timo, olio al prezzemolo.",
-    tags: [["vegetariana", "tag-veg"]] },
+    desc: "Roasted chestnut mushrooms, mozzarella, thyme, parsley oil.",
+    tags: [["vegetarian", "tag-veg"]] },
   { id: "capricciosa", name: "Capricciosa", price: 13.5,
-    desc: "Carciofi, funghi, prosciutto cotto, olive nere, mozzarella, pomodoro.",
+    desc: "Artichoke, mushroom, ham, black olives, mozzarella, tomato.",
     tags: [] },
   { id: "tonno", name: "Tonno e Cipolla", price: 13.5,
-    desc: "Tonno, cipolla rossa, capperi, mozzarella, scorza di limone.",
+    desc: "Tuna, red onion, capers, mozzarella, lemon zest.",
     tags: [] },
   { id: "salsiccia", name: "Salsiccia", price: 14.0,
-    desc: "Salsiccia al finocchietto, peperoni arrostiti, cipollotto, scamorza affumicata.",
-    tags: [["piace molto", ""]] },
+    desc: "Crumbled fennel sausage, roasted red pepper, spring onion, smoked scamorza.",
+    tags: [["popular", ""]] },
   { id: "bufalina", name: "Bufalina", price: 15.0,
-    desc: "Mozzarella di bufala campana, pomodorini confit, pesto di basilico.",
+    desc: "Buffalo mozzarella from Campania, burst cherry tomatoes, basil pesto.",
     tags: [] },
   { id: "ortolana", name: "Ortolana", price: 12.0,
-    desc: "Zucchine e melanzane alla griglia, peperoni arrostiti, ricotta affumicata.",
-    tags: [["vegetariana", "tag-veg"]] },
+    desc: "Grilled courgette and aubergine, roasted pepper, smoked ricotta.",
+    tags: [["vegetarian", "tag-veg"]] },
   { id: "insalata", name: "Insalata del Forno", price: 8.0,
-    desc: "Rucola, pomodorini, scaglie di parmigiano, dressing al limone. Servita nel pistonino.",
-    tags: [["contorno", ""], ["vegetariana", "tag-veg"]] },
+    desc: "Rocket, cherry tomatoes, shaved parmesan, lemon dressing.",
+    tags: [["side", ""], ["vegetarian", "tag-veg"]] },
 ];
 
-const EURO = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
+const EURO = new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR" });
 const money = (n) => EURO.format(n);
 
 const grid = document.getElementById("menu");
@@ -51,13 +51,13 @@ const scontrinoNo = document.getElementById("scontrino-no");
 
 const order = new Map();
 
-/* ---------- la carta ---------- */
+/* ---------- the menu ---------- */
 MENU.forEach((item, i) => {
   const card = document.createElement("article");
   card.className = "pizza reveal";
   card.innerHTML = `
     <div class="pizza-photo">
-      <img src="./images/${item.id}.jpg" alt="Pizza ${item.name}" loading="lazy" />
+      <img src="./images/${item.id}.jpg" alt="${item.name} pizza" loading="lazy" />
       <span class="pizza-num">${String(i + 1).padStart(2, "0")}</span>
     </div>
     <div class="pizza-body">
@@ -69,7 +69,7 @@ MENU.forEach((item, i) => {
       <div class="pizza-tags">
         ${item.tags.map(([t, cls]) => `<span class="tag ${cls}">${t}</span>`).join("")}
       </div>
-      <button class="btn" type="button" data-add="${item.id}">Aggiungi</button>
+      <button class="btn" type="button" data-add="${item.id}">Add</button>
     </div>
   `;
   grid.appendChild(card);
@@ -91,7 +91,29 @@ if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: re
   revealEls.forEach((el) => el.classList.add("in"));
 }
 
-/* ---------- scontrino ---------- */
+/* ---------- theme toggle ---------- */
+const themeToggle = document.getElementById("theme-toggle");
+const root = document.documentElement;
+
+function theme() {
+  return root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+}
+
+function applyTheme(t) {
+  root.setAttribute("data-theme", t);
+  try { localStorage.setItem("fornea-theme", t); } catch (e) {}
+  const dark = t === "dark";
+  themeToggle.setAttribute("aria-pressed", String(dark));
+  themeToggle.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+}
+
+themeToggle.addEventListener("click", () => {
+  applyTheme(theme() === "dark" ? "light" : "dark");
+});
+
+applyTheme(theme());
+
+/* ---------- receipt ---------- */
 scontrinoNo.textContent = `n. ${String(Math.floor(1000 + Math.random() * 9000))}`;
 
 function render() {
@@ -103,7 +125,7 @@ function render() {
     const li = document.createElement("li");
     li.className = "order-empty";
     li.id = "order-empty";
-    li.textContent = "La cassa è vuota.";
+    li.textContent = "Your box is empty.";
     listEl.appendChild(li);
   }
 
@@ -117,9 +139,9 @@ function render() {
         <span class="order-item-price">${money(item.price * qty)}</span>
       </span>
       <span class="qty">
-        <button type="button" data-dec="${id}" aria-label="Togli una ${item.name}">−</button>
+        <button type="button" data-dec="${id}" aria-label="Remove one ${item.name}">−</button>
         <span aria-live="polite">${qty}</span>
-        <button type="button" data-inc="${id}" aria-label="Aggiungi una ${item.name}">+</button>
+        <button type="button" data-inc="${id}" aria-label="Add one ${item.name}">+</button>
       </span>
     `;
     listEl.appendChild(li);
@@ -132,7 +154,7 @@ function render() {
   }, 0);
 
   totalEl.textContent = money(total);
-  countEl.textContent = `${count} articol${count === 1 ? "o" : "i"}`;
+  countEl.textContent = `${count} item${count === 1 ? "" : "s"}`;
   checkoutBtn.disabled = count === 0;
   clearBtn.disabled = count === 0;
 }
@@ -170,8 +192,8 @@ clearBtn.addEventListener("click", () => {
 checkoutBtn.addEventListener("click", () => {
   const count = [...order.values()].reduce((a, b) => a + b, 0);
   confirmEl.textContent =
-    `Grazie! ${count} articol${count === 1 ? "o" : "i"} (${totalEl.textContent}) riservati. `
-    + "Mostra questa schermata al banco — pagamento in contanti o carta.";
+    `Thanks! ${count} item${count === 1 ? "" : "s"} (${totalEl.textContent}) reserved. `
+    + "Show this screen at the counter — cash or card.";
   confirmEl.hidden = false;
 });
 

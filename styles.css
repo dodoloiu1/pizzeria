@@ -1,8 +1,10 @@
 /* ==========================================================================
-   Fornea — pizzeria napoletana
+   Fornea — Neapolitan pizzeria
    ========================================================================== */
 
 :root {
+  color-scheme: light;
+
   --paper: #f5eee0;
   --paper-2: #efe4d1;
   --card: #fffdf7;
@@ -15,11 +17,45 @@
   --gold: #bd8626;
   --dark: #1a130d;
   --dark-2: #241a12;
+
+  --band-bg: #221a12;
+  --band-ink: #f5eee0;
+  --band-accent: #d9a44a;
+
+  --grain-opacity: 0.5;
+  --grain-blend: multiply;
+
   --serif: "Fraunces", Georgia, "Times New Roman", serif;
   --sans: "Karla", system-ui, -apple-system, "Segoe UI", sans-serif;
   --hand: "Italianno", "Segoe Script", cursive;
   --shadow: 0 18px 40px -22px rgba(34, 26, 18, 0.45);
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --paper: #17120d;
+  --paper-2: #1f1811;
+  --card: #241c14;
+  --ink: #f2e8d8;
+  --ink-soft: #b3a48c;
+  --line: #3b2f23;
+  --rosso: #d2543a;
+  --rosso-deep: #e8836a;
+  --olive: #a3b068;
+  --gold: #d9a44a;
+  --dark: #0d0906;
+  --dark-2: #150f0a;
+
+  --band-bg: #000000;
+  --band-ink: #f2e8d8;
+  --band-accent: #d9a44a;
+
+  --grain-opacity: 0.28;
+  --grain-blend: screen;
+
+  --shadow: 0 20px 44px -22px rgba(0, 0, 0, 0.8);
 }
 
 * { box-sizing: border-box; }
@@ -38,6 +74,7 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition: background-color 0.35s var(--ease), color 0.35s var(--ease);
 }
 
 /* faint flour-dust grain over the whole page */
@@ -47,8 +84,8 @@ body::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.5;
-  mix-blend-mode: multiply;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
 }
 
@@ -61,6 +98,7 @@ h1, h2, h3 {
   letter-spacing: -0.015em;
   margin: 0 0 0.55em;
   text-wrap: balance;
+  transition: color 0.35s var(--ease);
 }
 
 h1 { font-size: clamp(2.9rem, 6.4vw, 5rem); }
@@ -117,6 +155,8 @@ img { display: block; max-width: 100%; }
   box-shadow: 0 0 0 4px rgba(178, 58, 28, 0.16);
 }
 
+html[data-theme="dark"] .kicker .dot { box-shadow: 0 0 0 4px rgba(210, 84, 58, 0.2); }
+
 .kicker-light { color: var(--gold); }
 .kicker-light .dot { background: var(--gold); box-shadow: 0 0 0 4px rgba(189, 134, 38, 0.18); }
 
@@ -172,13 +212,41 @@ img { display: block; max-width: 100%; }
 
 .btn-block { display: block; width: 100%; margin-top: 0.7rem; }
 
+/* ---------- theme toggle ---------- */
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease),
+              border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.theme-toggle:hover {
+  background: var(--rosso);
+  border-color: var(--rosso);
+  color: #fff;
+  transform: rotate(-12deg);
+}
+
+.theme-toggle .ic-moon { display: none; }
+html[data-theme="dark"] .theme-toggle .ic-sun { display: none; }
+html[data-theme="dark"] .theme-toggle .ic-moon { display: block; }
+
 /* ---------- top bar ---------- */
 
 .topbar {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(245, 238, 224, 0.9);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -189,6 +257,12 @@ img { display: block; max-width: 100%; }
   justify-content: space-between;
   gap: 1.5rem;
   padding-block: 0.85rem;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
 }
 
 .brand {
@@ -229,7 +303,10 @@ img { display: block; max-width: 100%; }
   font-weight: 600;
   letter-spacing: 0.04em;
   padding-block: 0.3rem;
+  transition: color 0.2s var(--ease);
 }
+
+html[data-theme="dark"] .nav a { color: var(--ink-soft); }
 
 .nav a::after {
   content: "";
@@ -246,14 +323,14 @@ img { display: block; max-width: 100%; }
 .nav a:hover::after { right: 0; }
 
 .nav-cta {
-  background: var(--ink);
-  color: var(--paper) !important;
+  background: var(--rosso);
+  color: #fff !important;
   padding: 0.55rem 1.1rem !important;
   border-radius: 2px;
 }
 
 .nav-cta::after { display: none; }
-.nav-cta:hover { background: var(--rosso); }
+.nav-cta:hover { background: var(--rosso-deep); }
 
 .burger {
   display: none;
@@ -281,6 +358,7 @@ img { display: block; max-width: 100%; }
     radial-gradient(50rem 26rem at 88% 6%, rgba(189, 134, 38, 0.2), transparent 62%),
     radial-gradient(34rem 22rem at 4% 92%, rgba(178, 58, 28, 0.09), transparent 65%),
     var(--paper);
+  transition: background-color 0.35s var(--ease);
 }
 
 .hero-grid {
@@ -309,7 +387,13 @@ img { display: block; max-width: 100%; }
   color: var(--ink-soft);
 }
 
-.hero-note span { font-family: var(--hand); font-size: 1.5rem; color: var(--rosso-deep); }
+.hero-note span {
+  font-family: var(--hand);
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--rosso-deep);
+  opacity: 0.95;
+}
 
 .hero-photos {
   position: relative;
@@ -360,7 +444,7 @@ img { display: block; max-width: 100%; }
   border: 2px solid var(--rosso);
   border-radius: 50%;
   color: var(--rosso-deep);
-  background: rgba(245, 238, 224, 0.82);
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
   transform: rotate(-12deg);
   font-family: var(--serif);
   font-size: 0.72rem;
@@ -376,7 +460,7 @@ img { display: block; max-width: 100%; }
   position: absolute;
   inset: 6px;
   border: 1px dashed rgba(178, 58, 28, 0.5);
-  border-radius: 50%;
+  border-radius: 50();
 }
 
 /* ---------- marquee ---------- */
@@ -384,9 +468,10 @@ img { display: block; max-width: 100%; }
 .marquee {
   margin-top: clamp(2.5rem, 5vw, 4rem);
   padding-block: 0.9rem;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--band-bg);
+  color: var(--band-ink);
   overflow: hidden;
+  transition: background-color 0.35s var(--ease), color 0.35s var(--ease);
 }
 
 .marquee-track {
@@ -401,7 +486,7 @@ img { display: block; max-width: 100%; }
   animation: slide 42s linear infinite;
 }
 
-.marquee-track i { color: var(--gold); font-style: normal; }
+.marquee-track i { color: var(--band-accent); font-style: normal; }
 
 @keyframes slide {
   from { transform: translateX(0); }
@@ -412,22 +497,28 @@ img { display: block; max-width: 100%; }
 
 .section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
 
-.section-alt { background: var(--paper-2); }
+.section-alt {
+  background: var(--paper-2);
+  transition: background-color 0.35s var(--ease);
+}
 
 .section-dark {
   background:
     radial-gradient(40rem 20rem at 80% 0%, rgba(189, 134, 38, 0.14), transparent 60%),
     var(--dark);
   color: #f0e6d6;
+  transition: background-color 0.35s var(--ease);
 }
 
 .section-dark h2 { color: #fbf4e7; }
 .section-dark p { color: #c3b49c; }
 
+html[data-theme="dark"] .section-dark p { color: #b3a48c; }
+
 .section-head { max-width: 42rem; margin-bottom: clamp(2rem, 4vw, 3.2rem); }
 .section-intro { color: var(--ink-soft); font-size: 1.08rem; }
 
-/* ---------- la carta ---------- */
+/* ---------- the menu ---------- */
 
 .menu {
   display: grid;
@@ -441,13 +532,16 @@ img { display: block; max-width: 100%; }
   background: var(--card);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
-  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease),
+              background-color 0.35s var(--ease), border-color 0.35s var(--ease);
 }
 
 .pizza:hover {
   transform: translateY(-4px);
   box-shadow: 0 26px 48px -24px rgba(34, 26, 18, 0.55);
 }
+
+html[data-theme="dark"] .pizza:hover { box-shadow: 0 26px 48px -20px rgba(0, 0, 0, 0.9); }
 
 .pizza-photo {
   position: relative;
@@ -471,7 +565,7 @@ img { display: block; max-width: 100%; }
   left: 0.7rem;
   padding: 0.22rem 0.55rem;
   background: rgba(26, 19, 13, 0.72);
-  color: var(--paper);
+  color: #f5eee0;
   font-family: var(--serif);
   font-size: 0.95rem;
   font-weight: 600;
@@ -529,12 +623,12 @@ img { display: block; max-width: 100%; }
   text-transform: uppercase;
 }
 
-.tag-veg { color: var(--olive); border-color: rgba(79, 90, 43, 0.4); }
-.tag-hot { color: var(--rosso-deep); border-color: rgba(178, 58, 28, 0.4); }
+.tag-veg { color: var(--olive); border-color: color-mix(in srgb, var(--olive) 45%, transparent); }
+.tag-hot { color: var(--rosso-deep); border-color: color-mix(in srgb, var(--rosso) 45%, transparent); }
 
 .pizza .btn { align-self: flex-start; margin-top: 0.4rem; }
 
-/* ---------- il forno ---------- */
+/* ---------- the oven ---------- */
 
 .forno-grid {
   display: grid;
@@ -551,10 +645,7 @@ img { display: block; max-width: 100%; }
   border: 1px solid rgba(240, 230, 214, 0.22);
 }
 
-.stats > div {
-  padding: 1.15rem 1.3rem;
-  background: var(--dark-2);
-}
+.stats > div { padding: 1.15rem 1.3rem; background: var(--dark-2); }
 
 .stats dt {
   font-family: var(--serif);
@@ -571,7 +662,7 @@ img { display: block; max-width: 100%; }
   color: #b6a78f;
 }
 
-/* ---------- ordine / scontrino ---------- */
+/* ---------- order / receipt ---------- */
 
 .order-grid {
   display: grid;
@@ -607,6 +698,7 @@ img { display: block; max-width: 100%; }
   border: 1px solid var(--line);
   padding: 1.5rem 1.5rem 1.7rem;
   box-shadow: var(--shadow);
+  transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease);
 }
 
 .scontrino::before,
@@ -628,6 +720,7 @@ img { display: block; max-width: 100%; }
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  gap: 0.8rem;
   padding-bottom: 0.9rem;
   border-bottom: 1px dashed var(--line);
 }
@@ -653,6 +746,7 @@ img { display: block; max-width: 100%; }
   font-size: 0.82rem;
   color: var(--ink-soft);
   letter-spacing: 0.08em;
+  white-space: nowrap;
 }
 
 .scontrino-body {
@@ -696,7 +790,7 @@ img { display: block; max-width: 100%; }
   cursor: pointer;
 }
 
-.qty button:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.qty button:hover { background: var(--rosso); color: #fff; border-color: var(--rosso); }
 
 .scontrino-total {
   display: flex;
@@ -720,9 +814,9 @@ img { display: block; max-width: 100%; }
 .scontrino-confirm {
   margin: 1rem 0 0;
   padding: 0.8rem 1rem;
-  background: #eef3e6;
+  background: color-mix(in srgb, var(--olive) 16%, var(--card));
   border-left: 3px solid var(--olive);
-  color: #3c4a1e;
+  color: color-mix(in srgb, var(--olive) 70%, var(--ink));
   font-size: 0.92rem;
 }
 
@@ -737,7 +831,7 @@ img { display: block; max-width: 100%; }
   color: var(--ink-soft);
 }
 
-/* ---------- sede ---------- */
+/* ---------- find us ---------- */
 
 .sede-grid {
   display: grid;
@@ -777,6 +871,7 @@ address { font-style: normal; line-height: 2; }
   background: var(--paper-2);
   color: var(--ink-soft);
   font-size: 0.9rem;
+  transition: background-color 0.35s var(--ease);
 }
 
 .footer-inner {
@@ -826,6 +921,8 @@ address { font-style: normal; line-height: 2; }
 
 @media (max-width: 620px) {
   .burger { display: flex; }
+
+  .topbar-right { gap: 0.9rem; }
 
   .nav {
     position: absolute;
