@@ -13,7 +13,7 @@ const MENU = [
   { id: "insalata", name: "Insalata del Forno", price: 8.0, desc: "Rocket, cherry tomato, shaved parmesan, lemon dressing.", tags: ["side", "vegetarian"] },
 ];
 
-const EURO = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
+const EURO = new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR" });
 const money = (n) => EURO.format(n);
 
 const grid = document.getElementById("menu-grid");
