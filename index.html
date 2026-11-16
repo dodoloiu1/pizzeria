@@ -1,152 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fornea — Wood-Fired Pizzeria</title>
-  <meta name="description" content="Fornea is a neighbourhood wood-fired pizzeria. San Marzano tomatoes, 48-hour dough, loaded ovens." />
+  <title>Fornea — Pizzeria Napoletana, Roma</title>
+  <meta name="description" content="Fornea è una pizzeria napoletana a Roma. Impasto 48 ore, forno a legna a 450°C, pomodoro San Marzano DOP." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Karla:wght@400;500;600;700&family=Italianno&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍕</text></svg>" />
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav container">
+  <a class="skip" href="#carta">Salta al menu</a>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
       <a class="brand" href="#top">
-        <span class="brand-mark" aria-hidden="true">🍕</span>
         <span class="brand-name">Fornea</span>
+        <span class="brand-sub">pizzeria napoletana</span>
       </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">
+      <nav class="nav" id="nav">
+        <a href="#carta">La Carta</a>
+        <a href="#forno">Il Forno</a>
+        <a href="#sede">La Sede</a>
+        <a class="nav-cta" href="#ordine">Ordina</a>
+      </nav>
+      <button class="burger" aria-expanded="false" aria-controls="nav" aria-label="Apri il menu">
         <span></span><span></span><span></span>
       </button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#visit">Visit</a></li>
-        <li><a class="btn btn-small" href="#order">Order</a></li>
-      </ul>
-    </nav>
+    </div>
   </header>
 
   <main id="top">
+    <!-- ============ HERO ============ -->
     <section class="hero">
-      <div class="container hero-inner">
-        <p class="eyebrow">Wood-fired · est. 2014</p>
-        <h1>Blistered crust,<br />honest ingredients.</h1>
-        <p class="lede">
-          48-hour cold-fermented dough, San Marzano tomatoes, fior di latte and a
-          450&nbsp;°C oak-fired oven. Eleven pizzas, one salad, done properly.
-        </p>
-        <div class="hero-actions">
-          <a class="btn" href="#menu">See the menu</a>
-          <a class="btn btn-ghost" href="#visit">Find us</a>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="kicker"><span class="dot"></span>Pizzeria napoletana · dal 2014</p>
+          <h1>La pizza<br /><em>veramente</em> napoletana.</h1>
+          <p class="lede">
+            Impasto lievitato 48 ore, pomodoro San Marzano DOP, fior di latte di Agerola
+            e un forno a legna che non scende mai sotto i 450&nbsp;°C. Undici pizze,
+            una insalata, fatte come si deve.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="#carta">Guarda la carta</a>
+            <a class="btn btn-line" href="#sede">Dove siamo</a>
+          </div>
+          <p class="hero-note">— Marco, <span>pizzaiolo</span></p>
+        </div>
+
+        <div class="hero-photos">
+          <figure class="ph ph-a">
+            <img src="./images/margherita.jpg" alt="Pizza Margherita appena sfornata, con basilico fresco" loading="eager" />
+            <figcaption>La Margherita</figcaption>
+          </figure>
+          <figure class="ph ph-b">
+            <img src="./images/diavola.jpg" alt="Pizza Diavola con salame piccante e miele di peperoncino" loading="lazy" />
+            <figcaption>La Diavola</figcaption>
+          </figure>
+          <div class="stamp" aria-hidden="true">
+            <span>Verace<br />Pizza<br />Napoletana</span>
+          </div>
         </div>
       </div>
-      <div class="hero-oven" aria-hidden="true">
-        <div class="oven-glow"></div>
-        <span class="oven-emoji">🔥</span>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Impasto 48 ore</span><i>·</i><span>Forno a legna 450°C</span><i>·</i>
+          <span>San Marzano DOP</span><i>·</i><span>Fior di latte di Agerola</span><i>·</i>
+          <span>Lievitazione naturale</span><i>·</i><span>Farina 00 di Gragnano</span><i>·</i>
+          <span>Impasto 48 ore</span><i>·</i><span>Forno a legna 450°C</span><i>·</i>
+          <span>San Marzano DOP</span><i>·</i><span>Fior di latte di Agerola</span><i>·</i>
+          <span>Lievitazione naturale</span><i>·</i><span>Farina 00 di Gragnano</span><i>·</i>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="menu">
+    <!-- ============ CARTA ============ -->
+    <section class="section" id="carta">
       <div class="container">
         <header class="section-head">
-          <h2>The menu</h2>
-          <p>Everything is made in house. Dough proofed for two days, stretched by hand, cooked in 90 seconds.</p>
+          <p class="kicker">la carta</p>
+          <h2>Undici pizze,<br />una insalata.</h2>
+          <p class="section-intro">
+            Tutto fatto in casa, ogni giorno. La pizza arriva intera al tavolo: si taglia
+            col coltello, come vuole la tradizione. Base senza glutine +2,50&nbsp;€,
+            mozzarella vegana +2,00&nbsp;€.
+          </p>
         </header>
 
-        <div class="menu-grid" id="menu-grid"></div>
-
-        <p class="menu-note">
-          All pizzas available as a 12″ round or a 16″ slice-and-share. Gluten-free
-          base +2.50. Vegan mozzarella +2.00.
-        </p>
+        <div class="menu" id="menu"></div>
       </div>
     </section>
 
-    <section class="section section-alt" id="about">
-      <div class="container about-grid">
-        <div>
-          <h2>Baked, not manufactured.</h2>
+    <!-- ============ FORNO ============ -->
+    <section class="section section-dark" id="forno">
+      <div class="container forno-grid">
+        <div class="forno-copy">
+          <p class="kicker kicker-light">il forno</p>
+          <h2>Il forno è il cuore.<br />Non lo spegniamo mai.</h2>
           <p>
-            Fornea started as a market stall with a second-hand oven and a
-            stubborn idea: that a margherita, made carefully, is enough. Nine
-            years later the oven is bigger and the queue is longer, but the
-            process is the same one we wrote on a whiteboard in 2014.
+            Il nostro forno a cupola è stato costruito a mano nel 2014 da una ditta di
+            Napoli. Brucia rovere e betulla, e resta acceso dal martedì alla domenica:
+            la temperatura della cupola non scende mai sotto i 450&nbsp;°C.
           </p>
-          <ul class="values">
-            <li><strong>48 hours</strong> cold fermentation for a lighter, digestible crust</li>
-            <li><strong>450&nbsp;°C</strong> oak and birch fire — no thermostats</li>
-            <li><strong>0</strong> frozen toppings, ever</li>
-          </ul>
+          <p>
+            La lievitazione lunga — 48 ore a temperatura controllata — rende l'impasto
+            leggero e digeribile. È la parte che non si vede, ed è quella che conta
+            di più.
+          </p>
+          <p class="handnote">“La pizza è semplice: farina, acqua, sale, lievito.<br />Il resto è solo fretta.”</p>
         </div>
-        <dl class="facts">
-          <div><dt>Opened</dt><dd>2014</dd></div>
-          <div><dt>Pizzas a night</dt><dd>≈ 240</dd></div>
-          <div><dt>Dough</dt><dd>48 h</dd></div>
-          <div><dt>Oven temp</dt><dd>450 °C</dd></div>
+
+        <dl class="stats">
+          <div><dt>48 ore</dt><dd>di lievitazione lenta</dd></div>
+          <div><dt>450 °C</dt><dd>nel forno a legna</dd></div>
+          <div><dt>90 sec.</dt><dd>di cottura</dd></div>
+          <div><dt>0</dt><dd>ingredienti surgelati</dd></div>
         </dl>
       </div>
     </section>
 
-    <section class="section" id="order">
-      <div class="container">
-        <header class="section-head">
-          <h2>Order ahead</h2>
-          <p>Build a box, pay on pickup. Ready in about 15 minutes.</p>
-        </header>
-
-        <div class="order-layout">
-          <ul class="order-list" id="order-list" aria-live="polite">
-            <li class="order-empty" id="order-empty">Your box is empty — add something from the menu.</li>
+    <!-- ============ ORDINE ============ -->
+    <section class="section" id="ordine">
+      <div class="container order-grid">
+        <div class="order-intro">
+          <p class="kicker">ordina per asporto</p>
+          <h2>Il tuo ordine.</h2>
+          <p>
+            Componi la cassa qui, passa a ritirarla in via dei Moli 14. Pronta in
+            circa quindici minuti — ti avvisiamo noi quando è al banco.
+          </p>
+          <ul class="order-points">
+            <li>Nessun pagamento online: si paga al banco</li>
+            <li>La prenotazione vale per 30 minuti</li>
+            <li>Per 8 pizze o più, chiama il <a href="tel:+39060000000">06 0000 000</a></li>
           </ul>
+        </div>
 
-          <div class="order-summary">
-            <div class="order-total">
-              <span>Total</span>
-              <strong id="order-total">€0.00</strong>
+        <div class="scontrino">
+          <div class="scontrino-head">
+            <div>
+              <span class="scontrino-title">Scontrino</span>
+              <span class="scontrino-sub">la tua cassa · asporto</span>
             </div>
-            <p class="order-meta" id="order-count">0 items</p>
-            <button class="btn btn-block" id="checkout" disabled>Reserve for pickup</button>
-            <button class="btn btn-ghost btn-block" id="clear-order" disabled>Clear box</button>
-            <p class="order-confirm" id="order-confirm" hidden></p>
+            <span class="scontrino-no" id="scontrino-no">n. —</span>
           </div>
+          <ul class="scontrino-body" id="order-list" aria-live="polite">
+            <li class="order-empty" id="order-empty">La cassa è vuota.</li>
+          </ul>
+          <div class="scontrino-total">
+            <span>Totale</span>
+            <strong id="order-total">€0.00</strong>
+          </div>
+          <p class="scontrino-meta" id="order-count">0 articoli</p>
+          <button class="btn btn-block" id="checkout" disabled>Riserva al banco</button>
+          <button class="btn btn-line btn-block" id="clear-order" disabled>Svuota</button>
+          <p class="scontrino-confirm" id="order-confirm" hidden></p>
+          <p class="scontrino-foot">Grazie e arrivederci · Fornea</p>
         </div>
       </div>
     </section>
 
-    <section class="section section-alt" id="visit">
-      <div class="container visit-grid">
+    <!-- ============ SEDE ============ -->
+    <section class="section section-alt" id="sede">
+      <div class="container sede-grid">
         <div>
-          <h2>Visit</h2>
+          <p class="kicker">la sede</p>
+          <h2>Venite a trovarci.</h2>
           <address>
-            14 Via dei Moli<br />
-            Trastevere, Rome<br />
+            Via dei Moli 14<br />
+            Trastevere, Roma<br />
             <a href="mailto:ciao@fornea.example">ciao@fornea.example</a><br />
             <a href="tel:+39060000000">+39 06 0000 000</a>
           </address>
+          <p class="sede-note">
+            La sala è piccola — trenta coperti — e il forno si vede dal banco.
+            Per i gruppi da sei persone in su, soltanto prenotazione.
+          </p>
         </div>
-        <div>
-          <h3>Hours</h3>
-          <table class="hours">
+
+        <div class="orari">
+          <h3>Orari</h3>
+          <table>
             <tbody>
-              <tr><th scope="row">Mon – Thu</th><td>18:00 – 23:00</td></tr>
-              <tr><th scope="row">Fri – Sat</th><td>12:30 – 24:00</td></tr>
-              <tr><th scope="row">Sunday</th><td>12:30 – 22:30</td></tr>
+              <tr><th scope="row">Lun – Gio</th><td>18:00 – 23:00</td></tr>
+              <tr><th scope="row">Ven – Sab</th><td>12:30 – 24:00</td></tr>
+              <tr><th scope="row">Domenica</th><td>12:30 – 22:30</td></tr>
+              <tr><th scope="row">Lunedì</th><td>chiuso</td></tr>
             </tbody>
           </table>
-          <p class="hours-note">Kitchen closes 45 minutes before the door.</p>
+          <p class="orari-note">La cucina chiude 45 minuti prima della porta.</p>
+          <p class="handnote handnote-dark">chiamaci se sei in ritardo —<br />teniamo la pizza al caldo.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="footer">
     <div class="container footer-inner">
-      <p>© <span id="year"></span> Fornea Pizzeria. Made with flour on our hands.</p>
-      <p class="footer-fine">Demo site — no real orders are taken.</p>
+      <p class="footer-brand">Fornea <span>· pizzeria napoletana · dal 2014</span></p>
+      <p class="footer-fine">© <span id="year"></span> Fornea. Sito dimostrativo — nessun ordine reale viene preso.</p>
     </div>
   </footer>
 

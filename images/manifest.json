@@ -1,0 +1,16 @@
+[
+  {
+    "id": "diavola",
+    "name": "Diavola",
+    "file": "images/diavola.jpg",
+    "width": "1200",
+    "height": "896"
+  },
+  {
+    "id": "salsiccia",
+    "name": "Salsiccia",
+    "file": "images/salsiccia.jpg",
+    "width": "1200",
+    "height": "896"
+  }
+]
