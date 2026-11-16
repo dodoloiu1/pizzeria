@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fornea — Wood-Fired Pizzeria</title>
+  <meta name="description" content="Fornea is a neighbourhood wood-fired pizzeria. San Marzano tomatoes, 48-hour dough, loaded ovens." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍕</text></svg>" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">🍕</span>
+        <span class="brand-name">Fornea</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#visit">Visit</a></li>
+        <li><a class="btn btn-small" href="#order">Order</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="eyebrow">Wood-fired · est. 2014</p>
+        <h1>Blistered crust,<br />honest ingredients.</h1>
+        <p class="lede">
+          48-hour cold-fermented dough, San Marzano tomatoes, fior di latte and a
+          450&nbsp;°C oak-fired oven. Eleven pizzas, one salad, done properly.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="#menu">See the menu</a>
+          <a class="btn btn-ghost" href="#visit">Find us</a>
+        </div>
+      </div>
+      <div class="hero-oven" aria-hidden="true">
+        <div class="oven-glow"></div>
+        <span class="oven-emoji">🔥</span>
+      </div>
+    </section>
+
+    <section class="section" id="menu">
+      <div class="container">
+        <header class="section-head">
+          <h2>The menu</h2>
+          <p>Everything is made in house. Dough proofed for two days, stretched by hand, cooked in 90 seconds.</p>
+        </header>
+
+        <div class="menu-grid" id="menu-grid"></div>
+
+        <p class="menu-note">
+          All pizzas available as a 12″ round or a 16″ slice-and-share. Gluten-free
+          base +2.50. Vegan mozzarella +2.00.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="about">
+      <div class="container about-grid">
+        <div>
+          <h2>Baked, not manufactured.</h2>
+          <p>
+            Fornea started as a market stall with a second-hand oven and a
+            stubborn idea: that a margherita, made carefully, is enough. Nine
+            years later the oven is bigger and the queue is longer, but the
+            process is the same one we wrote on a whiteboard in 2014.
+          </p>
+          <ul class="values">
+            <li><strong>48 hours</strong> cold fermentation for a lighter, digestible crust</li>
+            <li><strong>450&nbsp;°C</strong> oak and birch fire — no thermostats</li>
+            <li><strong>0</strong> frozen toppings, ever</li>
+          </ul>
+        </div>
+        <dl class="facts">
+          <div><dt>Opened</dt><dd>2014</dd></div>
+          <div><dt>Pizzas a night</dt><dd>≈ 240</dd></div>
+          <div><dt>Dough</dt><dd>48 h</dd></div>
+          <div><dt>Oven temp</dt><dd>450 °C</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" id="order">
+      <div class="container">
+        <header class="section-head">
+          <h2>Order ahead</h2>
+          <p>Build a box, pay on pickup. Ready in about 15 minutes.</p>
+        </header>
+
+        <div class="order-layout">
+          <ul class="order-list" id="order-list" aria-live="polite">
+            <li class="order-empty" id="order-empty">Your box is empty — add something from the menu.</li>
+          </ul>
+
+          <div class="order-summary">
+            <div class="order-total">
+              <span>Total</span>
+              <strong id="order-total">€0.00</strong>
+            </div>
+            <p class="order-meta" id="order-count">0 items</p>
+            <button class="btn btn-block" id="checkout" disabled>Reserve for pickup</button>
+            <button class="btn btn-ghost btn-block" id="clear-order" disabled>Clear box</button>
+            <p class="order-confirm" id="order-confirm" hidden></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="visit">
+      <div class="container visit-grid">
+        <div>
+          <h2>Visit</h2>
+          <address>
+            14 Via dei Moli<br />
+            Trastevere, Rome<br />
+            <a href="mailto:ciao@fornea.example">ciao@fornea.example</a><br />
+            <a href="tel:+39060000000">+39 06 0000 000</a>
+          </address>
+        </div>
+        <div>
+          <h3>Hours</h3>
+          <table class="hours">
+            <tbody>
+              <tr><th scope="row">Mon – Thu</th><td>18:00 – 23:00</td></tr>
+              <tr><th scope="row">Fri – Sat</th><td>12:30 – 24:00</td></tr>
+              <tr><th scope="row">Sunday</th><td>12:30 – 22:30</td></tr>
+            </tbody>
+          </table>
+          <p class="hours-note">Kitchen closes 45 minutes before the door.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Fornea Pizzeria. Made with flour on our hands.</p>
+      <p class="footer-fine">Demo site — no real orders are taken.</p>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
